@@ -1,7 +1,7 @@
 import sys
 from pathlib import Path
 
-from FileParsers.filereaders import verify_files
+from FileParsers.filereaders import verify_files, page_number_remover
 
 files = []
 
@@ -53,7 +53,20 @@ class Menu:
         files = verify_files(data_folder, file_names)
 
     def parse_trips_from_files(self):
-        pass
+        """Will read each pbs trip file and turn it into usable dictionaries
+
+                First run: from scaderd data in the pbs file to readable strings
+                Second run: from strings into dictionaries
+                Third run: from dictionaries into objects"""
+
+        unstored_trips = list()
+        for file in files:
+            # 1. Read in and clean the txt.file
+            print("\n Parsing file : {}".format(file))
+            position = input("Is this a PBS file for EJE or SOB? ").upper()
+            crew_base = 'MEX'
+            cleaned_content = page_number_remover(file)
+            print(cleaned_content)
 
     def figure_out_unsaved_trips(self):
         pass
