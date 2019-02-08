@@ -1,0 +1,71 @@
+import sys
+from pathlib import Path
+
+files = []
+
+class Menu:
+    """Display a menu and respond to choices when run"""
+
+    def __init__(self):
+        self.choices = {
+            "1": self.choose_trip_files,
+            "2": self.parse_trips_from_files,
+            "3": self.figure_out_unsaved_trips,
+            "4": self.search_for_trip,
+            "5": self.read_reserve_file,
+            "10": self.quit}
+
+    @staticmethod
+    def display_menu():
+        print('''
+        Orgutrip Menu
+
+        1. Elejir los archivos con los trips.
+        2. Leer cada archivo con los trips y generar los objetos.
+        3. Trabajar con los trips que no pudieron ser creados.
+        4. Buscar un trip en especìfico.
+        5. Leer los archivos con las reservas.
+        10. Quit
+        ''')
+
+    def run(self):
+        """Display the menu and respond to choices"""
+        while True:
+            self.display_menu()
+            choice = input("¿Qué deseas realizar?: ")
+            action = self.choices.get(choice)
+            if action:
+                action()
+            else:
+                print("{0} is not a valid choice".format(choice))
+
+    def choose_trip_files(self):
+        """This option chooses the files that are to be read and turned into meaningful data
+
+        """
+        global files
+        data_folder = Path("C:/Users/Xico/Google Drive/Sobrecargo/PBS/2019 PBS/201901 PBS")
+        file_names = ["201901 - PBS vuelos SOB A.txt",
+                      "201901 - PBS vuelos SOB B.txt",
+                      "201901 - PBS vuelos EJE.txt"]
+
+
+    def parse_trips_from_files(self):
+        pass
+
+    def figure_out_unsaved_trips(self):
+        pass
+
+    def search_for_trip(self):
+        pass
+
+    def read_reserve_file(self):
+        pass
+
+    def quit(self):
+        print("adiós")
+        sys.exit(0)
+
+
+if __name__ == '__main__':
+    Menu().run()
