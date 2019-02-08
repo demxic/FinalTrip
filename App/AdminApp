@@ -1,6 +1,8 @@
 import sys
 from pathlib import Path
 
+from FileParsers.filereaders import verify_files
+
 files = []
 
 class Menu:
@@ -48,7 +50,7 @@ class Menu:
         file_names = ["201901 - PBS vuelos SOB A.txt",
                       "201901 - PBS vuelos SOB B.txt",
                       "201901 - PBS vuelos EJE.txt"]
-
+        files = verify_files(data_folder, file_names)
 
     def parse_trips_from_files(self):
         pass
